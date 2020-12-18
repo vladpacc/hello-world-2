@@ -28,5 +28,5 @@ variable "deployment_endpoint" {
   }
 }
 variable "google_domain_name" {
-    default = "devopbalancer.com"
+    default = "uraniium.com"
 }
