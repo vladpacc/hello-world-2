@@ -11,22 +11,3 @@ module "hello-world-deploy" {
 output "application_endpoint" {
     value = "${lookup(var.deployment_endpoint, "${var.deployment_environment}")}.${var.google_domain_name}"
 }
-variable  "deployment_image" {
-    default = "docker.devoploadbalancer.com/hello-world-app-dev-feature:4b7aacb"
-}
-variable "deployment_environment" {
-    default = "stage"
-}
-variable "deployment_endpoint" {
-    type = "map"
-     default = {
-        test  = "test.hello"
-        dev  = "dev.hello"
-        qa   = "qa.hello"
-        prod = "hello"
-        stage = "stage.hello"
-  }
-}
-variable "google_domain_name" {
-    default = "uraniium.com"
-}

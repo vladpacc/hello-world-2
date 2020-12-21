@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  repository: docker.uraniium.com/hello-world-app-dev-feature:d560d82
+  repository: ${deployment_image}
   #tag: stable
   pullPolicy: IfNotPresent
 imagePullSecrets: []
@@ -16,13 +16,13 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: dev.hello.uraniium.com
+    - host: ${deployment_endpoint}
       paths:
       - /
   tls:
     - secretName: hello-dev-tls
       hosts:
-        - dev.hello.uraniium.com
+        - ${deployment_endpoint}
 
         
 globalEnvironments:
