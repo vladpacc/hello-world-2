@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  repository: docker.uraniium.com/hello-world-app-dev-feature:a3b498f
+  repository: docker.uraniium.com/hello-world-app-dev-feature:d560d82
   #tag: stable
   pullPolicy: IfNotPresent
 imagePullSecrets: []
