@@ -1,36 +1,36 @@
-# Default values for hello-world.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
-
+replicaCount: 2
 image:
-  repository: vladpacc/hello-world-2
+  repository: docker.uraniium.com/hello-world-app-dev-feature:a3b498f
+  #tag: stable
   pullPolicy: IfNotPresent
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
 service:
   type: ClusterIP
   port: 80
-
 ingress:
   enabled: true
-  annotations: 
-     kubernetes.io/ingress.class: nginx
-     cert-manager.io/cluster-issuer: letsencrypt-prod
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # kubernetes.io/tls-acme: "true"
   hosts:
-  - host: dev.hello.uraniium.com
-    paths: 
-    - /
+    - host: dev.hello.uraniium.com
+      paths:
+      - /
+  tls:
+    - secretName: hello-dev-tls
+      hosts:
+        - dev.hello.uraniium.com
 
+        
+globalEnvironments:
+  enabled: true
+  environments:
+  - name: ENVIRONMENT
+    value: dev
 
-  tls: 
-  - secretName: hello-world-tls
-    hosts:
-    - ${deployment_endpoint}
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -43,9 +43,4 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
 nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
