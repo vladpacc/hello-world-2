@@ -36,6 +36,10 @@ spec:
             httpGet:
               path: /
               port: 5000
+{{- if .Values.globalEnvironments.enabled }}
+        env:
+{{ toYaml .Values.globalEnvironments.environments | indent 8 }}
+{{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
