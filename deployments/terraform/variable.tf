@@ -2,7 +2,7 @@ variable  "deployment_image" {
     default = "docker.fuchicorp.com/hello-world-app-dev-feature:4b7aacb"
 }
 variable "deployment_environment" {
-    default = "dev"
+    default = "hello"
 }
 variable "deployment_endpoint" {
     type = "map"
